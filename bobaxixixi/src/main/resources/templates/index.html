@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/index.css}"/>
+</head>
+
+<body class="secondary-boba">
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container">
+        <div class="welcome primary-boba text-center p-5">
+            <h1 class="text-white">WELCOME TO BOBAXIXIXI!</h1>
+        </div>
+        <div class="feature">
+            <h2 class="text-center text-primary-boba">List of Features</h2>
+            <div class="d-flex justify-content-center options">
+                <div class="option primary-boba">
+                    <a href="" class="text-decoration-none"><h3 class="text-white">Store</h3></a>
+                </div>
+                <div class="option primary-boba">
+                    <a href="" class="text-decoration-none"><h3 class="text-white">Boba Tea</h3></a>
+                </div>
+                <div class="option primary-boba">
+                    <a href="" class="text-decoration-none"><h3 class="text-white">Search</h3></a>
+                </div>
+                <div class="option primary-boba">
+                    <a href="" class="text-decoration-none"><h3 class="text-white">Filter</h3></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

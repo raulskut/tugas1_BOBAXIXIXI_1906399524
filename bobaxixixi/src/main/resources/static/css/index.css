@@ -1,0 +1,18 @@
+.welcome{
+    margin-top: 6rem;
+    border-radius: 15px;
+}
+
+.options{
+    margin-top: 2%;
+}
+
+.option{
+    border-radius: 15px;
+    margin: 0% 2%;
+    padding: 1% 5%;
+}
+
+.feature{
+    margin-top: 10%;
+}

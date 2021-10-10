@@ -1,0 +1,19 @@
+*{
+    text-decoration: none;
+}
+
+.primary-boba{
+    background-color: #62433E;
+}
+
+.secondary-boba{
+    background-color: #FFECD9;
+}
+
+.text-primary-boba{
+    color: #62433E;
+}
+
+.text-secondary-boba{
+    color: #FFECD9;
+}
