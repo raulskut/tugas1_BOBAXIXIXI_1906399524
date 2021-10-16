@@ -25,11 +25,13 @@ public class BobaServiceImpl implements BobaService{
 
     @Override
     public void addBoba(BobaModel boba){
+        boba.setPrice(boba.getPrice()+boba.getTopping().getPrice());
         bobaDB.save(boba);
     }
 
     @Override
     public void updateBoba(BobaModel boba){
+        boba.setPrice(boba.getPrice()+boba.getTopping().getPrice());
         bobaDB.save(boba);
     }
 

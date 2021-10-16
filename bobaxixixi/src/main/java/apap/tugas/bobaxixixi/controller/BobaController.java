@@ -66,6 +66,7 @@ public class BobaController {
         BobaModel boba = bobaService.getBobaByIdBoba(idBoba);
         if (bobaService.getStatusBoba(boba)){
             model.addAttribute("boba", boba);
+            model.addAttribute("cleanPrice", boba.getPrice()-boba.getTopping().getPrice());
             model.addAttribute("listTopping", toppingService.getListTopping());
             return "boba/form-update-boba.html";
         } else {
