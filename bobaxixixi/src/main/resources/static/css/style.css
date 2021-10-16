@@ -1,7 +1,3 @@
-*{
-    text-decoration: none;
-}
-
 .primary-boba{
     background-color: #62433E;
 }
@@ -10,10 +6,27 @@
     background-color: #FFECD9;
 }
 
+.third-boba{
+    background-color: #F6BF93;
+}
+
+.dark-boba{
+    background-color: #351915;
+}
+
+.border-boba{
+    border-color: #F6BF93;
+}
+
 .text-primary-boba{
     color: #62433E;
 }
 
 .text-secondary-boba{
     color: #FFECD9;
+}
+
+.active{
+    transition: 0.3s ease-in-out all;
+    border-bottom: 3px solid white;
 }

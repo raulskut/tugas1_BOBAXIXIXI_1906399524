@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>BOBAXIXI</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/store/assign.css}"/>
+</head>
+
+<body class="secondary-boba">
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="content border-boba bg-white p-5">
+        <h2 class="text-center text-primary-boba" th:text="'Add Boba to '+${store.name}"></h2>
+        <form method="POST" th:action="@{/store/} + ${store.idStore} + @{/assign-boba}" th:object="${storeboba}" class="mt-lg-5">
+            <table class="table table-striped text-center">
+                <thead class="dark-boba">
+                <tr>
+                    <th scope="col" class="text-white"></th>
+                    <th scope="col" class="text-white">Name</th>
+                    <th scope="col" class="text-white">Price</th>
+                    <th scope="col" class="text-white">Size</th>
+                    <th scope="col" class="text-white">Ice</th>
+                    <th scope="col" class="text-white">Sugar</th>
+                    <th scope="col" class="text-white">Topping</th>
+                </tr>
+                </thead>
+                <tbody>
+                <input name="boba" value="404" type="hidden">
+                <tr th:each="boba, iterationStatus : ${listBoba}">
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="form-check-input" name="allIdBoba" th:value="${boba.idBoba}" checked hidden>
+                            <input type="checkbox" class="form-check-input" name="boba" th:value="${boba.idBoba}" th:checked="${listChecked[iterationStatus.index]}">
+                        </div>
+                    </td>
+                    <td th:text="${boba.name}"></td>
+                    <td th:text="'Rp ' + ${boba.price}"></td>
+                    <td th:if="${boba.size} == 0">S</td>
+                    <td th:if="${boba.size} == 1">M</td>
+                    <td th:if="${boba.size} == 2">L</td>
+                    <td th:if="${boba.iceLevel} == 0">Less</td>
+                    <td th:if="${boba.iceLevel} == 1">Normal</td>
+                    <td th:if="${boba.iceLevel} == 2">Extra</td>
+                    <td th:if="${boba.sugarLevel} == 0">Less</td>
+                    <td th:if="${boba.sugarLevel} == 1">Normal</td>
+                    <td th:if="${boba.sugarLevel} == 2">Extra</td>
+                    <td th:text="${boba.topping.name}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-end mt-lg-5">
+                <div class="mx-3">
+                    <a th:href="@{/store/}+${store.idStore}" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+                <div class="mx-3">
+                    <input type="submit" class="btn dark-boba text-white" value="Confirm"></input>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

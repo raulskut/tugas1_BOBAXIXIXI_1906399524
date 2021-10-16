@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>BOBAXIXI</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/boba/index.css}"/>
+</head>
+
+<body class="secondary-boba">
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="content border-boba bg-white text-center p-5">
+        <h2 class="text-primary-boba text-center font-weight-bold">List of Boba Tea</h2>
+        <div th:if="*{listBoba.size() != 0}">
+            <div class="add-boba">
+                <a th:href="@{/boba/add}" class="text-decoration-none text-white">+ Add Boba Tea</a>
+            </div>
+            <table class="table table-striped">
+                <thead class="dark-boba">
+                <tr>
+                    <th scope="col" class="text-white">No</th>
+                    <th scope="col" class="text-white">Name</th>
+                    <th scope="col" class="text-white">Price</th>
+                    <th scope="col" class="text-white">Size</th>
+                    <th scope="col" class="text-white">Ice</th>
+                    <th scope="col" class="text-white">Sugar</th>
+                    <th scope="col" class="text-white">Topping</th>
+                    <th scope="col" class="text-white">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="boba, iterationStatus : ${listBoba}">
+                    <th scope="row" th:text="${iterationStatus.count}"></th>
+                    <td th:text="${boba.name}"></td>
+                    <td th:text="'Rp ' + ${boba.price}"></td>
+                    <td th:if="${boba.size} == 0">S</td>
+                    <td th:if="${boba.size} == 1">M</td>
+                    <td th:if="${boba.size} == 2">L</td>
+                    <td th:if="${boba.iceLevel} == 0">Less</td>
+                    <td th:if="${boba.iceLevel} == 1">Normal</td>
+                    <td th:if="${boba.iceLevel} == 2">Extra</td>
+                    <td th:if="${boba.sugarLevel} == 0">Less</td>
+                    <td th:if="${boba.sugarLevel} == 1">Normal</td>
+                    <td th:if="${boba.sugarLevel} == 2">Extra</td>
+                    <td th:text="${boba.topping.name}"></td>
+                    <td>
+                        <div class="d-flex justify-content-center">
+                            <a th:href="@{/boba/} + ${boba.idBoba} + @{/assign-store}" class="btn btn-info btn-sm text-white mx-1">Assign</a>
+                            <a th:href="@{/boba/update/} + ${boba.idBoba}" class="btn btn-warning btn-sm text-white mx-1">Update</a>
+                            <a th:href="@{/boba/delete/} + ${boba.idBoba}" class="btn btn-danger btn-sm text-white mx-1">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:unless="*{listBoba.size() != 0}">
+            <h5 class="text-primary-boba text-center">Tidak ada Boba untuk saat ini.</h5>
+            <div class="d-flex justify-content-center">
+                <div class="add-boba">
+                    <a th:href="@{/boba/add}" class="text-decoration-none text-white">+ Add Boba Tea</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

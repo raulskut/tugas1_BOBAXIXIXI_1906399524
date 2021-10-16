@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <title>BOBAXIXI</title>
+  <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+  <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+  <link rel="stylesheet" th:href="@{/css/store/response.css}"/>
+</head>
+
+<body class="secondary-boba">
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container d-flex justify-content-center">
+  <div class="content border-boba bg-white text-center p-5">
+    <h2 class="text-primary-boba text-center font-weight-bold" th:text="${responseText}"></h2>
+    <br><br><br>
+    <a href="/store" class="text-decoration-none"><p class="text-primary-boba"><-- Back to store list</p></a>
+    <br>
+    <h5 class="text-primary-boba text-center font-weight-bold">List of Boba Tea</h5>
+    <br>
+    <table class="table table-striped text-center">
+      <thead class="dark-boba">
+      <tr>
+        <th scope="col" class="text-white">Name</th>
+        <th scope="col" class="text-white">Price</th>
+        <th scope="col" class="text-white">Size</th>
+        <th scope="col" class="text-white">Ice</th>
+        <th scope="col" class="text-white">Sugar</th>
+        <th scope="col" class="text-white">Topping</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="boba, iterationStatus : ${listBoba}">
+        <td th:text="${boba.name}"></td>
+        <td th:text="'Rp ' + ${boba.price}"></td>
+        <td th:if="${boba.size} == 0">S</td>
+        <td th:if="${boba.size} == 1">M</td>
+        <td th:if="${boba.size} == 2">L</td>
+        <td th:if="${boba.iceLevel} == 0">Less</td>
+        <td th:if="${boba.iceLevel} == 1">Normal</td>
+        <td th:if="${boba.iceLevel} == 2">Extra</td>
+        <td th:if="${boba.sugarLevel} == 0">Less</td>
+        <td th:if="${boba.sugarLevel} == 1">Normal</td>
+        <td th:if="${boba.sugarLevel} == 2">Extra</td>
+        <td th:text="${boba.topping.name}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

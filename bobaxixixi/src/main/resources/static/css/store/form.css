@@ -1,0 +1,21 @@
+.container{
+    width: 30%;
+}
+
+.content{
+    margin-top:5%;
+    border-radius: 10px;
+    border: solid 1px #F6BF93;
+}
+
+input#address{
+    height: 100px;
+}
+
+.mx-3{
+    width: 25%;
+}
+
+.btn{
+    width: 100%;
+}

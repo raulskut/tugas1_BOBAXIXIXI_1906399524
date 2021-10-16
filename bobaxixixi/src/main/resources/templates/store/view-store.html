@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>BOBAXIXI</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/store/view.css}"/>
+</head>
+
+<body class="secondary-boba">
+<nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container">
+        <div class="content border-boba bg-white">
+            <h2 class="text-primary-boba font-weight-bold text-center">Store Detail</h2>
+            <div class="row d-flex justify-content-center mt-lg-5">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><b>Store Name</b></p>
+                            <p><b>Address</b></p>
+                            <p><b>Open Hour</b></p>
+                            <p><b>Close Hour</b></p>
+                            <p><b>Manager</b></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p th:text="${store.name}"></p>
+                            <p th:text="${store.address}"></p>
+                            <p th:text="${store.openHour}"></p>
+                            <p th:text="${store.closeHour}"></p>
+                            <p th:text="${manager.fullName}"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><b>Store Code</b></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p th:text="${store.storeCode}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <h3 class="text-primary-boba font-weight-bold text-center">List of Boba Tea</h3>
+            <div class="d-flex justify-content-center">
+                <table class="table table-striped mt-3 table-container">
+                    <thead class="dark-boba">
+                    <tr>
+                        <th scope="col" class="text-white">No</th>
+                        <th scope="col" class="text-white">Name</th>
+                        <th scope="col" class="text-white">Topping</th>
+                        <th scope="col" class="text-white">Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="boba, iterationStatus : ${listBoba}">
+                        <th scope="row" th:text="${iterationStatus.count}"></th>
+                        <td th:text="${boba.name}"></td>
+                        <td th:text="${boba.topping.name}"></td>
+                        <td th:text="'Rp '+${boba.price}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-flex justify-content-center">
+                <div class="add-boba">
+                    <a th:href="@{/store/} + ${store.idStore} + @{/assign-boba}" class="text-decoration-none text-white">+ Add Boba Tea</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>BOBAXIXI</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/boba/form.css}"/>
+</head>
+
+<body class="secondary-boba">
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="content border-boba bg-white p-5">
+        <h2 class="text-center text-primary-boba">Update Boba Tea</h2>
+        <form method="POST" th:action="@{/boba/update/}+${boba.idBoba}" th:object="${boba}" class="mt-lg-5">
+            <div class="form-row">
+                <div class="form-group col-12">
+                    <label for="bobaName">Boba Tea Name</label>
+                    <input type="text" class="form-control" id="bobaName" name="name" placeholder="Boba tea name ..." autocomplete="off" th:value="*{name}">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="price">Price</label>
+                    <input type="text" class="form-control" id="price" name="price" placeholder="Price..." th:value="*{price}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="size">Size</label>
+                    <select class="form-control" id="size" th:field="*{size}">
+                        <option th:if="*{size} == 0" value="0" selected hidden>S</option>
+                        <option th:if="*{size} == 1" value="1" selected hidden>M</option>
+                        <option th:if="*{size} == 2" value="2" selected hidden>L</option>
+                        <option value="0">S</option>
+                        <option value="1">M</option>
+                        <option value="2">L</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="sugarLevel">Sugar Level</label>
+                    <select class="form-control" id="sugarLevel" th:field="*{sugarLevel}">
+                        <option th:if="*{sugarLevel} == 0" value="0" selected hidden>Less</option>
+                        <option th:if="*{sugarLevel} == 1" value="1" selected hidden>Normal</option>
+                        <option th:if="*{sugarLevel} == 2" value="2" selected hidden>Extra</option>
+                        <option value="0">Less</option>
+                        <option value="1">Normal</option>
+                        <option value="2">Extra</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="iceLevel">Ice Level</label>
+                    <select class="form-control" id="iceLevel" th:field="*{iceLevel}">
+                        <option th:if="*{iceLevel} == 0" value="0" selected hidden>Less</option>
+                        <option th:if="*{iceLevel} == 1" value="1" selected hidden>Normal</option>
+                        <option th:if="*{iceLevel} == 2" value="2" selected hidden>Extra</option>
+                        <option value="0">Less</option>
+                        <option value="1">Normal</option>
+                        <option value="2">Extra</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="topping">Topping</label>
+                    <select class="form-control" id="topping" th:field="*{topping}">
+                        <option th:value="*{topping.idTopping}" th:text="*{topping.name}" selected hidden></option>
+                        <option th:each="topping : ${listTopping}" th:value="${topping.idTopping}" th:text="${topping.name}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-lg-5">
+                <div class="mx-3">
+                    <a href="/boba" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+                <div class="mx-3">
+                    <input type="submit" class="btn dark-boba text-white" value="Save"></input>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

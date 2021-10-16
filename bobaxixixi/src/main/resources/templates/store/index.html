@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>BOBAXIXI</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/store/index.css}"/>
+</head>
+
+<body class="secondary-boba">
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="content border-boba bg-white text-center p-5">
+        <h2 class="text-primary-boba text-center font-weight-bold">List of Store</h2>
+        <div th:if="*{listStore.size() != 0}">
+            <div class="add-store">
+                <a th:href="@{/store/add}" class="text-decoration-none text-white">+ Add Store</a>
+            </div>
+            <table class="table table-striped">
+                <thead class="dark-boba">
+                <tr>
+                    <th scope="col" class="text-white">No</th>
+                    <th scope="col" class="text-white">Store Code</th>
+                    <th scope="col" class="text-white">Name</th>
+                    <th scope="col" class="text-white">Address</th>
+                    <th scope="col" class="text-white">Operational Hour</th>
+                    <th scope="col" class="text-white">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="store, iterationStatus : ${listStore}">
+                    <th scope="row" th:text="${iterationStatus.count}"></th>
+                    <td th:text="${store.storeCode}"></td>
+                    <td th:text="${store.name}"></td>
+                    <td th:text="${store.address}"></td>
+                    <td th:text="${store.openHour} + ' - ' + ${store.closeHour}"></td>
+                    <td>
+                        <div class="d-flex justify-content-center">
+                            <a th:href="@{/store/} + ${store.idStore}" class="btn btn-info btn-sm text-white mx-1">view</a>
+                            <a th:href="@{/store/update/} + ${store.idStore}" class="btn btn-warning btn-sm text-white mx-1">Update</a>
+                            <a th:href="@{/store/delete/} + ${store.idStore}" class="btn btn-danger btn-sm text-white mx-1">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:unless="*{listStore.size() != 0}">
+            <h5 class="text-primary-boba text-center">Tidak ada Store untuk saat ini.</h5>
+            <div class="d-flex justify-content-center">
+                <div class="add-store">
+                    <a th:href="@{/store/add}" class="text-decoration-none text-white">+ Add Store</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

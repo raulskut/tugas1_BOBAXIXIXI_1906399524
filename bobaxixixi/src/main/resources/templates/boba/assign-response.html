@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>BOBAXIXI</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/store/response.css}"/>
+</head>
+
+<body class="secondary-boba">
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container d-flex justify-content-center">
+    <div class="content border-boba bg-white text-center p-5">
+        <h2 class="text-primary-boba text-center font-weight-bold" th:text="${responseText}"></h2>
+        <br><br>
+        <a href="/boba" class="text-decoration-none"><p class="text-primary-boba"><-- Back to List of Boba Tea</p></a>
+        <br>
+        <h5 class="text-primary-boba text-center font-weight-bold">List of Store</h5>
+        <br>
+        <table class="table table-striped text-center">
+            <thead class="dark-boba">
+            <tr>
+                <th scope="col" class="text-white">Store Code</th>
+                <th scope="col" class="text-white">Name</th>
+                <th scope="col" class="text-white">Address</th>
+                <th scope="col" class="text-white">Operational Hour</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="store, iterationStatus : ${listStore}">
+                <td th:text="${store.name}"></td>
+                <td th:text="${store.storeCode}"></td>
+                <td th:text="${store.address}"></td>
+                <td th:text="${store.openHour}+' - '+${store.closeHour}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

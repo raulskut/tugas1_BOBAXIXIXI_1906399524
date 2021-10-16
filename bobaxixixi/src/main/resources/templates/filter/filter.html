@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>BOBAXIXI</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/search/search.css}"/>
+</head>
+
+<body class="secondary-boba">
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="content border-boba bg-white text-center p-5">
+        <h2 class="text-primary-boba text-center font-weight-bold">Filter Manager</h2>
+        <br><br>
+        <form method="GET" action="/filter">
+            <div class="d-flex justify-content-center">
+                <div>
+                    <div class="form-inline">
+                        <div class="form-group mx-sm-3 mb-2">
+                            <select class="form-control" id="boba" name="idBoba">
+                                <option value="selected" selected hidden>-- Select Boba Tea Name --</option>
+                                <option th:each="boba : ${listBoba}" th:value="${boba.idBoba}" th:text="${boba.name}"></option>
+                            </select>
+                        </div>
+                        <input type="submit" class="btn dark-boba text-white mb-2" value="Search">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

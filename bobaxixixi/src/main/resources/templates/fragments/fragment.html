@@ -34,17 +34,20 @@
     </button>
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
-            <a class="nav-item nav-link text-white" th:href="@{/}">
+            <a class="nav-item nav-link text-white" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/store') ? 'active font-weight-bold':''}" th:href="@{/store}">
                 Store
             </a>
-            <a class="nav-item nav-link text-white" th:href="@{/}">
+            <a class="nav-item nav-link text-white" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/boba') ? 'active font-weight-bold':''}" th:href="@{/boba}">
                 Boba Tea
             </a>
-            <a class="nav-item nav-link text-white" th:href="@{/}">
+            <a class="nav-item nav-link text-white" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/search') ? 'active font-weight-bold':''}" th:href="@{/searchboba}">
                 Search
             </a>
-            <a class="nav-item nav-link text-white" th:href="@{/}">
+            <a class="nav-item nav-link text-white" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/filter') ? 'active font-weight-bold':''}" th:href="@{/filters}">
                 Filter
+            </a>
+            <a class="nav-item nav-link text-white" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/bonus') ? 'active font-weight-bold':''}" th:href="@{/bonuses}">
+                Bonus
             </a>
         </ul>
     </div>

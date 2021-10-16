@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>BOBAXIXI</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/boba/form.css}"/>
+</head>
+
+<body class="secondary-boba">
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="content border-boba bg-white p-5">
+        <h2 class="text-center text-primary-boba">Add New Boba Tea</h2>
+        <form method="POST" th:action="@{/boba/add}" th:object="${boba}" class="mt-lg-5">
+            <input type="hidden" th:field="*{idBoba}">
+            <div class="form-row">
+                <div class="form-group col-12">
+                    <label for="bobaName">Boba Tea Name</label>
+                    <input type="text" class="form-control" id="bobaName" name="name" placeholder="Boba tea name ..." autocomplete="off">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="price">Price</label>
+                    <input type="text" class="form-control" id="price" name="price" placeholder="Price...">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="size">Size</label>
+                    <select class="form-control" id="size" th:field="*{size}">
+                        <option value="selected" selected hidden>-- Select Size --</option>
+                        <option value="0">S</option>
+                        <option value="1">M</option>
+                        <option value="2">L</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="sugarLevel">Size</label>
+                    <select class="form-control" id="sugarLevel" th:field="*{sugarLevel}">
+                        <option value="selected" selected hidden>-- Select a Sugar Level --</option>
+                        <option value="0">Less</option>
+                        <option value="1">Normal</option>
+                        <option value="2">Extra</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="iceLevel">Ice Level</label>
+                    <select class="form-control" id="iceLevel" th:field="*{iceLevel}">
+                        <option value="selected" selected hidden>-- Select an Ice Level --</option>
+                        <option value="0">Less</option>
+                        <option value="1">Normal</option>
+                        <option value="2">Extra</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="topping">Topping</label>
+                    <select class="form-control" id="topping" th:field="*{topping}">
+                        <option value="selected" selected hidden>-- Select a Topping --</option>
+                        <option th:each="topping : ${listTopping}" th:value="${topping.idTopping}" th:text="${topping.name}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-lg-5">
+                <div class="mx-3">
+                    <a href="/store" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+                <div class="mx-3">
+                    <input type="submit" class="btn dark-boba text-white" value="Save"></input>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

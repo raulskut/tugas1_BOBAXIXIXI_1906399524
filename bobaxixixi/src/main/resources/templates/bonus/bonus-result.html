@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>BOBAXIXI</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    <link rel="stylesheet" th:href="@{/css/search/search.css}"/>
+</head>
+
+<body class="secondary-boba">
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="content border-boba bg-white text-center p-5">
+        <h2 class="text-primary-boba text-center font-weight-bold">Search Boba and Store</h2>
+        <br><br>
+        <form method="GET" action="/bonus">
+            <div class="d-flex justify-content-center">
+                <div>
+                    <div class="form-inline">
+                        <div class="form-group mx-sm-3 mb-2">
+                            <input th:value="${myKeyword}" class="form-control" name="keyword" id="keyword" autocomplete="off">
+                        </div>
+                        <input type="submit" class="btn dark-boba text-white mb-2" value="Search">
+                    </div>
+                </div>
+            </div>
+        </form><br>
+        <h3 th:text="'Search Result Boba for '+${myKeyword}" class="text-center text-primary-boba font-weight-bold"></h3>
+        <div th:if="*{bobaResult.size() != 0}">
+            <table class="table table-striped">
+                <thead class="dark-boba">
+                <tr>
+                    <th scope="col" class="text-white">No</th>
+                    <th scope="col" class="text-white">Nama Boba</th>
+                    <th scope="col" class="text-white">Price</th>
+                    <th scope="col" class="text-white">Size</th>
+                    <th scope="col" class="text-white">Ice</th>
+                    <th scope="col" class="text-white">Sugar</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="result, iterationStatus : ${bobaResult}">
+                    <td th:text="${iterationStatus.count}"></td>
+                    <td th:text="${result.name}"></td>
+                    <td th:text="'Rp '+${result.price}"></td>
+                    <td th:if="${result.size} == 0">S</td>
+                    <td th:if="${result.size} == 1">M</td>
+                    <td th:if="${result.size} == 2">L</td>
+                    <td th:if="${result.iceLevel} == 0">Less</td>
+                    <td th:if="${result.iceLevel} == 1">Normal</td>
+                    <td th:if="${result.iceLevel} == 2">Extra</td>
+                    <td th:if="${result.sugarLevel} == 0">Less</td>
+                    <td th:if="${result.sugarLevel} == 1">Normal</td>
+                    <td th:if="${result.sugarLevel} == 2">Extra</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:unless="*{bobaResult.size() != 0}">
+            <h5 class="text-center text-primary-boba font-weight-bold">
+                No Results! Search Again...
+            </h5>
+        </div><br><br><br>
+        <h3 th:text="'Search Result Store for '+${myKeyword}" class="text-center text-primary-boba font-weight-bold"></h3>
+        <div th:if="*{storeResult.size() != 0}">
+            <table class="table table-striped">
+                <thead class="dark-boba">
+                <tr>
+                    <th scope="col" class="text-white">No</th>
+                    <th scope="col" class="text-white">Store Code</th>
+                    <th scope="col" class="text-white">Name</th>
+                    <th scope="col" class="text-white">Address</th>
+                    <th scope="col" class="text-white">Operational Hour</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="store, iterationStatus : ${storeResult}">
+                    <th scope="row" th:text="${iterationStatus.count}"></th>
+                    <td th:text="${store.storeCode}"></td>
+                    <td th:text="${store.name}"></td>
+                    <td th:text="${store.address}"></td>
+                    <td th:text="${store.openHour} + ' - ' + ${store.closeHour}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <div th:unless="*{bobaResult.size() != 0}">
+                <h5 class="text-center text-primary-boba font-weight-bold">
+                    No Results! Search Again...
+                </h5>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

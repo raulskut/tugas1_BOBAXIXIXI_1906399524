@@ -1,0 +1,18 @@
+.content{
+    margin-top:5%;
+    border-radius: 10px;
+    border: solid 1px #F6BF93;
+}
+
+.add-boba{
+    margin-top: 3%;
+    border-radius: 5px;
+    width: 20%;
+    background-color: #EF974F;
+    padding: 0.5% 3%;
+    font-size: 1rem;
+}
+
+.table{
+    margin-top: 2%;
+}
